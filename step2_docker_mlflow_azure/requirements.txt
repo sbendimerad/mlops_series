@@ -1,0 +1,7 @@
+scikit-learn
+mlflow
+azure-storage-blob
+azure-identity
+azure-common 
+pyodbc
+boto3
