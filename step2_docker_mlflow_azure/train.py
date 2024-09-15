@@ -18,11 +18,11 @@ y = pd.Series(data = iris["target"], name="target")
 X_train, X_test, y_train, y_test = train_test_split(X, y)
 
 # Set your variables for your environment
-EXPERIMENT_NAME="my-expn"
+EXPERIMENT_NAME="experiment1"
 
 # Set tracking URI to your Heroku application
-# mlflow.set_tracking_uri("https://mlflowtrackingwa.azurewebsites.net/")
-mlflow.set_tracking_uri("http://localhost:5000")
+mlflow.set_tracking_uri("your mlflow URI")
+# mlflow.set_tracking_uri("http://localhost:5000")
 
 
 # Set experiment's info 
@@ -59,8 +59,4 @@ with mlflow.start_run(experiment_id = experiment.experiment_id):
     mlflow.log_param("C", c)
     mlflow.log_artifact('test.txt')
 
-    # Log model 
-    #mlflow.sklearn.log_model(lr, "model")
-    #mlflow.log_artifacts("https://mlflowtrackingstorage2.blob.core.windows.net/mlflowexperiments2")
-
-
+    
