@@ -8,17 +8,21 @@ ENV DEBIAN_FRONTEND=noninteractive
 RUN apt-get update -y && \
     apt-get install -y --no-install-recommends curl apt-transport-https gnupg2 unixodbc-dev
 
+# Remove conflicting libodbc package
+RUN apt-get remove -y libodbc2 unixodbc-common
+
 # Add Microsoft SQL Server ODBC Driver 18 repository and install
 RUN curl https://packages.microsoft.com/keys/microsoft.asc | apt-key add - && \
     curl https://packages.microsoft.com/config/debian/11/prod.list > /etc/apt/sources.list.d/mssql-release.list && \
     apt-get update && \
-    ACCEPT_EULA=Y apt-get install -y msodbcsql18 mssql-tools18
+    ACCEPT_EULA=Y apt-get install -y --allow-downgrades --allow-remove-essential --allow-change-held-packages \
+    msodbcsql18 mssql-tools18 libodbc1 unixodbc
 
 # Add mssql-tools to PATH
 RUN echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bash_profile && \
     echo 'export PATH="$PATH:/opt/mssql-tools18/bin"' >> ~/.bashrc
 
-# define default server env variables
+# Define default server env variables
 ENV MLFLOW_SERVER_HOST 0.0.0.0
 ENV MLFLOW_SERVER_PORT 5000
 ENV MLFLOW_SERVER_WORKERS 1
