@@ -30,7 +30,7 @@ def download_model():
     blob = BlobClient(account_url="https://mlflowtrackingstorage.blob.core.windows.net/",
                         container_name="mlflowexperiments",
                         blob_name="model/model.pkl",
-                        credential="1dswCsZZeexJLy2f262blkVboIQK2a4lv53cwv99hOml93k218VwFSe24ZmrGlKESixOPJfyqnKY+AStdKZpDw==")
+                        credential="copy and past the storage account key")
 
     # Download the model as a stream of bytes
     stream = io.BytesIO()
