@@ -25,7 +25,6 @@ ENV PORT=8000
 EXPOSE 8000
 
 # execute the command python main.py (in the WORKDIR) to start the app
-# CMD ["python", "api.py"]
 CMD ["uvicorn", "api:app", "--host", "0.0.0.0", "--port", "8000"]
 
 
