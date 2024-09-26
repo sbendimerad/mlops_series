@@ -1,0 +1,13 @@
+azure-storage-blob
+azure-identity
+azure-common 
+cffi
+cloudpickle
+defusedxml
+numpy
+packaging
+pandas
+pyarrow
+scikit-learn
+uvicorn
+fastapi
