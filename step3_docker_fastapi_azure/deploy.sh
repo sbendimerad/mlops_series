@@ -9,7 +9,7 @@ set -o nounset
 # PARAMETERS
 
 # Azure parameters
-SUBSCRIPTION_ID="860fcc66-98e7-4c95-b1ff-dc6290d9e5dc"
+SUBSCRIPTION_ID="copy and past your subscription id"
 
 # Resource group parameters
 RG_NAME="mlops_series"
@@ -42,21 +42,21 @@ echo "Setting default subscription: $SUBSCRIPTION_ID"
 az account set \
     --subscription $SUBSCRIPTION_ID
 
-#####################
-# DEPLOYMENT
+####################
+DEPLOYMENT
 
-# echo "Creating resource group: $RG_NAME"
-# az group create \
-#     --name $RG_NAME \
-#     --location $RG_LOCATION
+echo "Creating resource group: $RG_NAME"
+az group create \
+    --name $RG_NAME \
+    --location $RG_LOCATION
 
 
-# echo "Creating Azure container registry: $ACR_NAME"
-# az acr create \
-#     --name $ACR_NAME \
-#     --resource-group $RG_NAME \
-#     --sku Basic \
-#     --admin-enabled true 
+echo "Creating Azure container registry: $ACR_NAME"
+az acr create \
+    --name $ACR_NAME \
+    --resource-group $RG_NAME \
+    --sku Basic \
+    --admin-enabled true 
 
 echo "Getting Azure container registry credentials: $ACR_NAME"
 export ACR_USERNAME=$(az acr credential show --name $ACR_NAME --query "username" --output tsv)
@@ -72,20 +72,20 @@ echo "Pushing image to Azure container registry: $ACR_NAME"
 docker tag $DOCKER_IMAGE_NAME $ACR_NAME.azurecr.io/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
 docker push $ACR_NAME.azurecr.io/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
 
-# echo "Creating app service plan: $ASP_NAME"
-# az appservice plan create \
-#     --name $ASP_NAME \
-#     --resource-group $RG_NAME \
-#     --sku B1 \
-#     --is-linux \
-#     --location $RG_LOCATION
+echo "Creating app service plan: $ASP_NAME"
+az appservice plan create \
+    --name $ASP_NAME \
+    --resource-group $RG_NAME \
+    --sku B1 \
+    --is-linux \
+    --location $RG_LOCATION
 
-# echo "Creating web app: $WEB_APP_NAME"
-# az webapp create \
-#     --resource-group $RG_NAME \
-#     --plan $ASP_NAME \
-#     --name $WEB_APP_NAME \
-#     --deployment-container-image-name $ACR_NAME.azurecr.io/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
+echo "Creating web app: $WEB_APP_NAME"
+az webapp create \
+    --resource-group $RG_NAME \
+    --plan $ASP_NAME \
+    --name $WEB_APP_NAME \
+    --deployment-container-image-name $ACR_NAME.azurecr.io/$DOCKER_IMAGE_NAME:$DOCKER_IMAGE_TAG
 
 echo "Configuring registry credentials in web app"
 az webapp config container set \
