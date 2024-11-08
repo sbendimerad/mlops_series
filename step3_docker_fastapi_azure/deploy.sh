@@ -43,7 +43,7 @@ az account set \
     --subscription $SUBSCRIPTION_ID
 
 ####################
-DEPLOYMENT
+# DEPLOYMENT
 
 echo "Creating resource group: $RG_NAME"
 az group create \
