@@ -20,7 +20,7 @@ RG_LOCATION="francecentral"
 SQL_SERVER_NAME="mlflowtrackingsqlserver"
 SQL_DATABASE_NAME="mlflowtrackingsqldb"
 SQL_ADMIN_USER="mlflowtrackingsqladmin"
-SQL_ADMIN_PASSWORD="Sabrine20242"
+SQL_ADMIN_PASSWORD=""
 
 # Docker image parameters
 DOCKER_IMAGE_NAME="mlflowserver"
