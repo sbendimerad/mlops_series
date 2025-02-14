@@ -9,7 +9,7 @@ set -o nounset
 # PARAMETERS
 
 # Azure parameters
-SUBSCRIPTION_ID="860fcc66-98e7-4c95-b1ff-dc6290d9e5dc"
+SUBSCRIPTION_ID=""
 
 # Resource group parameters
 RG_NAME="mlops_series"
